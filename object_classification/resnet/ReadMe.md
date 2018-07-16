@@ -39,10 +39,9 @@ ResNet34网络架构由$(3+4+6+3)*2+2=34$个卷积层构成，其中stride为2�
 ---
 ## 参考资料
 
-Deep Residual Learning for Image Recognition深度残差网络论文。
-
-Identity Mappings in Deep Residual Networks另一篇相关深度残差网络论文，更多数学上的证明。
-
-[resnet.py](https://github.com/pytorch/vision/blob/master/torchvision/models/resnet.py) pytorch中resnet实现。
-
-[ResNet解读](https://satisfie.github.io/2016/09/15/ResNet%E8%A7%A3%E8%AF%BB/) 介绍了ResNet，极大地总结还原了论文中的核心思想。
+- Deep Residual Learning for Image Recognition深度残差网络论文。
+- Identity Mappings in Deep Residual Networks另一篇相关深度残差网络论文，更多数学上的证明。
+- [resnet.py](https://github.com/pytorch/vision/blob/master/torchvision/models/resnet.py) pytorch中resnet实现。
+- [ResNet解读](https://satisfie.github.io/2016/09/15/ResNet%E8%A7%A3%E8%AF%BB/) 介绍了ResNet，极大地总结还原了论文中的核心思想。
+- [ResNet-50-deploy.prototxt](https://github.com/KaimingHe/deep-residual-networks/blob/master/prototxt/ResNet-50-deploy.prototxt) Kaiming实现的resnet，和pytorch实现的有差别，主要在stride为2的Conv次序上。
+- [pytorch-resnet](https://github.com/ruotianluo/pytorch-resnet) 将caffe中的模型转换为pytorch。
