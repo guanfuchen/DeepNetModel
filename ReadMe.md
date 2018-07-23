@@ -19,6 +19,11 @@
 
 深度残差网络使得百层网络的训练成为可能，其他deep learning模型中大量采用了该架构。
 
+### Network in Network
+
+caffe model zoo中提供了ImageNet预训练模型文件[Netowork in Network ILSVRC](https://drive.google.com/drive/folders/0B0IedYUunOQINEFtUi1QNWVhVVU)和CIFAR10预训练模型文件[Network in Network CIFAR10 Model](https://gist.github.com/mavenlin/e56253735ef32c3c296d)。
+
+
 ---
 ## 参考资料
 
