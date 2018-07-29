@@ -23,6 +23,10 @@
 
 caffe model zoo中提供了ImageNet预训练模型文件[Netowork in Network ILSVRC](https://drive.google.com/drive/folders/0B0IedYUunOQINEFtUi1QNWVhVVU)和CIFAR10预训练模型文件[Network in Network CIFAR10 Model](https://gist.github.com/mavenlin/e56253735ef32c3c296d)。
 
+### Inception v1,v2,v3,v4
+
+增加Inception v1，v2，v3和v4论文思路整理，具体查看[inception理解](./object_classification/inception/ReadMe.md)。
+
 
 ---
 ## 参考资料
