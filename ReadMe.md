@@ -27,8 +27,20 @@ caffe model zoo中提供了ImageNet预训练模型文件[Netowork in Network ILS
 
 增加Inception v1，v2，v3和v4论文思路整理，具体查看[inception理解](./object_classification/inception/ReadMe.md)。
 
+### 轻量级网络
+
+#### MobileNet v1,v2
+
+增加轻量级网络MobileNet v1和v2知识整理，具体查看[mobilenet理解](./object_classification/mobilenet/ReadMe.md)。
+
+#### ShuffleNet
+
+增加轻量级网络ShuffleNet知识整理，具体查看[shufflenet理解](./object_classification/shufflenet/ReadMe.md)。。
+
 
 ---
 ## 参考资料
 
-Deep Residual Learning for Image Recognition深度残差网络论文。
+- Deep Residual Learning for Image Recognition深度残差网络论文。
+- [ResNet, AlexNet, VGGNet, Inception: Understanding various architectures of Convolutional Networks](http://cv-tricks.com/cnn/understand-resnet-alexnet-vgg-inception/) 科普了AlexNet等网络结构。
+- [CNN卷积神经网络架构综述](https://chenzomi12.github.io/2016/12/13/CNN-Architectures/) CNN相关的网络架构综述博客，介绍了AlexNet、ZFNet、GoogLeNet、VGGNet和ResNet等常用深度神经网络，同时可以参考综述类文章An Analysis of Deep Neural Network Models for Practical Applications。
