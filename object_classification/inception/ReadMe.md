@@ -41,7 +41,7 @@
 - [googlenet.py](https://github.com/kuangliu/pytorch-cifar/blob/master/models/googlenet.py) 在cifar中实现了GoogLeNet网络结构。
 - [inception_v1_googlenet.py](https://github.com/vadimkantorov/metriclearningbench/blob/master/inception_v1_googlenet.py) 纯粹的pytorch实现的inception v1 GoogLeNet网络结构，同时有预训练的imagenet权重。
 - [Going Deeper with Convolutions 阅读笔记](https://asdf0982.github.io/2017/06/26/GoogleNet/)
-- [caffe bvlc_googlenet](https://github.com/BVLC/caffe/blob/master/models/bvlc_googlenet/train_val.prototxt)
+- [caffe bvlc_googlenet](https://github.com/BVLC/caffe/blob/master/models/bvlc_googlenet/train_val.prototxt)，可以通过netscope查看其中的训练部署图，直观了解。
 - [GoogLeNet示例](https://nndl.github.io/v/cnn-googlenet.html)
 - [One by One [ 1 x 1 ] Convolution - counter-intuitively useful](https://iamaaditya.github.io/2016/03/one-by-one-convolution/) 其中介绍了GoogLeNet中常用的1x1卷积操作，也可以查看中文[为什么GoogleNet中的Inception Module使用1*1 convolutions?](https://ziyubiti.github.io/2016/11/13/googlenet-inception/)。
 
@@ -98,3 +98,5 @@ inception v2图7结构
 ---
 ## 参考资料
 - [理解ResNet、Inception与Xception](https://bacterous.github.io/2017/12/18/%E7%90%86%E8%A7%A3ResNet%E3%80%81Inception%E4%B8%8EXception/) 该博客从上层网络模型内在提出的哲学来讲，非常有意思。
+- [从Inception v1到Inception-ResNet，一文概览Inception家族的「奋斗史」](https://zhuanlan.zhihu.com/p/37505777) inception网络相关博客。
+- [卷积神经网络结构简述（二）Inception系列网络](https://zhuanlan.zhihu.com/p/30756181)

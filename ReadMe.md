@@ -10,6 +10,11 @@
     - ...
 - object_classification
     - resnet
+    - inception
+    - network_in_network
+    - mobilenet
+    - shufflenet
+    - alexnet
     - ...
 - object_detection
     - ...
@@ -35,7 +40,18 @@ caffe model zoo中提供了ImageNet预训练模型文件[Netowork in Network ILS
 
 #### ShuffleNet
 
-增加轻量级网络ShuffleNet知识整理，具体查看[shufflenet理解](./object_classification/shufflenet/ReadMe.md)。。
+增加轻量级网络ShuffleNet知识整理，具体查看[shufflenet理解](./object_classification/shufflenet/ReadMe.md)。
+
+### AlexNet
+
+增加AlexNet知识整理，具体查看[alexnet理解](./object_classification/alexnet/ReadMe.md)。
+
+### VGGNet
+
+增加VGGNet知识整理，具体查看[vggnet理解](./object_classification/vgg/ReadMe.md)。
+
+
+
 
 
 ---
@@ -44,3 +60,4 @@ caffe model zoo中提供了ImageNet预训练模型文件[Netowork in Network ILS
 - Deep Residual Learning for Image Recognition深度残差网络论文。
 - [ResNet, AlexNet, VGGNet, Inception: Understanding various architectures of Convolutional Networks](http://cv-tricks.com/cnn/understand-resnet-alexnet-vgg-inception/) 科普了AlexNet等网络结构。
 - [CNN卷积神经网络架构综述](https://chenzomi12.github.io/2016/12/13/CNN-Architectures/) CNN相关的网络架构综述博客，介绍了AlexNet、ZFNet、GoogLeNet、VGGNet和ResNet等常用深度神经网络，同时可以参考综述类文章An Analysis of Deep Neural Network Models for Practical Applications。
+- [Caffe神经网络结构汇总](http://noahsnail.com/2017/06/01/2017-6-1-Caffe%E7%BD%91%E7%BB%9C%E7%BB%93%E6%9E%84%E6%80%BB%E7%BB%93/) 介绍了caffe中常用的分类网络的模型结构。
