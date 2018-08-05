@@ -64,3 +64,4 @@ caffe model zoo中提供了ImageNet预训练模型文件[Netowork in Network ILS
 - [ResNet, AlexNet, VGGNet, Inception: Understanding various architectures of Convolutional Networks](http://cv-tricks.com/cnn/understand-resnet-alexnet-vgg-inception/) 科普了AlexNet等网络结构。
 - [CNN卷积神经网络架构综述](https://chenzomi12.github.io/2016/12/13/CNN-Architectures/) CNN相关的网络架构综述博客，介绍了AlexNet、ZFNet、GoogLeNet、VGGNet和ResNet等常用深度神经网络，同时可以参考综述类文章An Analysis of Deep Neural Network Models for Practical Applications。
 - [Caffe神经网络结构汇总](http://noahsnail.com/2017/06/01/2017-6-1-Caffe%E7%BD%91%E7%BB%9C%E7%BB%93%E6%9E%84%E6%80%BB%E7%BB%93/) 介绍了caffe中常用的分类网络的模型结构。
+- [自己项目的总结包括面试](https://www.cnblogs.com/ymjyqsx/p/7661088.html) 其中包括了一些目标检测的总结。
