@@ -130,6 +130,93 @@ static void PSROIPoolingForward(const int num, const Dtype* bottom_data, const D
 
 ```
 
+## 数据集测试
+
+### VOC2007
+
+使用Deformable-ConvNets环境中训练R-FCN网络，训练集是2007_trainval，测试集是2007_test，训练测试配置yaml文件为./experiments/fpn/cfgs/resnet_v1_101_coco_trainval_fpn_end2end_ohem.yaml。
+
+```
+AP for aeroplane = 0.7611
+AP for bicycle = 0.8006
+AP for bird = 0.7612
+AP for boat = 0.6477
+AP for bottle = 0.6188
+AP for bus = 0.8375
+AP for car = 0.8034
+AP for cat = 0.8715
+AP for chair = 0.5583
+AP for cow = 0.8152
+AP for diningtable = 0.6597
+AP for dog = 0.8692
+AP for horse = 0.8322
+AP for motorbike = 0.7850
+AP for person = 0.7875
+AP for pottedplant = 0.4577
+AP for sheep = 0.7291
+AP for sofa = 0.7339
+AP for train = 0.8109
+AP for tvmonitor = 0.7240
+Mean AP@0.5 = 0.7432
+AP for aeroplane = 0.4946
+AP for bicycle = 0.6066
+AP for bird = 0.5411
+AP for boat = 0.3584
+AP for bottle = 0.3845
+AP for bus = 0.7430
+AP for car = 0.6925
+AP for cat = 0.6698
+AP for chair = 0.3244
+AP for cow = 0.6376
+AP for diningtable = 0.4007
+AP for dog = 0.6314
+AP for horse = 0.6247
+AP for motorbike = 0.5744
+AP for person = 0.5496
+AP for pottedplant = 0.2311
+AP for sheep = 0.5756
+AP for sofa = 0.5211
+AP for train = 0.6610
+AP for tvmonitor = 0.6209
+Mean AP@0.7 = 0.5421
+```
+
+
+---
+## 评价指标
+
+主要包含rpn_eval_metric、rpn_cls_metric、rpn_bbox_metric和rcnn_eval_metric、rcnn_cls_metric、rcnn_bbox_metric这6类metric，具体细节如下所示。
+
+
+### rpn_eval_metric
+```
+class RPNAccMetric(mx.metric.EvalMetric):
+    """
+    RPN Acc评价指标
+    """
+    def __init__(self):
+        super(RPNAccMetric, self).__init__('RPNAcc')
+        self.pred, self.label = get_rpn_names()
+
+    def update(self, labels, preds):
+        pred = preds[self.pred.index('rpn_cls_prob')]
+        label = labels[self.label.index('rpn_label')]
+
+        # pred (b, c, p) or (b, c, h, w)
+        pred_label = mx.ndarray.argmax_channel(pred).asnumpy().astype('int32')
+        pred_label = pred_label.reshape((pred_label.shape[0], -1))
+        # label (b, p)
+        label = label.asnumpy().astype('int32')
+
+        # filter with keep_inds
+        keep_inds = np.where(label != -1)
+        pred_label = pred_label[keep_inds]
+        label = label[keep_inds]
+
+        self.sum_metric += np.sum(pred_label.flat == label.flat)
+        self.num_inst += len(pred_label.flat)
+```
+
 ---
 ## 参考资料
 - [R-FCN论文翻译——中文版](http://noahsnail.com/2018/01/22/2018-01-22-R-FCN%E8%AE%BA%E6%96%87%E7%BF%BB%E8%AF%91%E2%80%94%E2%80%94%E4%B8%AD%E6%96%87%E7%89%88/)
