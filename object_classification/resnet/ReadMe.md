@@ -51,6 +51,32 @@ ResNet101网络架构由$(3+4+23+3)*3+2=101$个卷积层构成，其中stride为
 ![](http://chenguanfuqq.gitee.io/tuquan2/img_2018_5/resnet_arch_list.png)
 
 ---
+# Identity Mappings in Deep Residual Networks
+
+Deep residual networks（ResNets）由许多“Residual Units”组成。每一个单元表达形式如下所示：
+
+$$y_l=h(x_l)+F(x_l,W_l)$$
+$$x_{l+1}=f(y_l)$$
+
+其中$x_l$和$x_{l+1}$是第$l$个单元的输入和输出，$F$是残差函数。ResNets网络中$h(x_l)=x_l$是identity mapping，$f$是$ReLU$函数。
+
+本文推倒发现如果$f(y_l)$和$h(x_l)$是identity mapping，信号能够从一个单元直接传播到另一个单元。当接近满足以上条件时，实验显示训练更加容易。
+
+另外和ResNets不同的是，本文使用了预激活而不是后激活，提升了网络的精度。
+
+如果$f$和$h$是identity mapping，那么上述公式变为如下：
+$$x_{l+1}=x_l+F(x_l,W_l)$$
+递推得到：
+$$x_{l+2}=x_{l+1}+F(x_{l+1},W_{l+1})=x_l+F(x_l,W_l+F(x_{l+1},W_{l+1})$$
+$$x_{L}=x_l+\sum_{i=l}^{L-1}{F(x_i,W_i)}$$
+上述公式具有以下属性：
+- 任何深度单元$L$的特征$x_L$都能表示为任何浅层单元$l$的特征$x_l$的加上残差函数；
+- 特征$x_{L}=x_0+\sum_{i=0}^{L-1}{F(x_i,W_i)}$是所有先前残差网络地输出之和，这和plain的矩阵向量乘积不同；
+
+反向传播误差如下：
+$\partial{\varepsilon}$
+
+---
 ## 参考资料
 
 - Deep Residual Learning for Image Recognition深度残差网络论文。
