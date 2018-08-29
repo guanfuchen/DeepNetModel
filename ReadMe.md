@@ -55,7 +55,13 @@ caffe model zoo中提供了ImageNet预训练模型文件[Netowork in Network ILS
 
 增加R-FCN知识整理，具体查看[rfcn理解](./object_detection/rfcn/ReadMe.md)。
 
+### FPN
 
+参考论文Feature Pyramid Networks for Object Detection
+
+### RetinaNet
+
+参考论文Focal Loss for Dense Object Detection
 
 ---
 ## 参考资料
