@@ -15,6 +15,7 @@
     - mobilenet
     - shufflenet
     - alexnet
+    - densenet
     - ...
 - object_detection
     - R-FCN
@@ -67,6 +68,9 @@ caffe model zoo中提供了ImageNet预训练模型文件[Netowork in Network ILS
 
 增加VGGNet知识整理，具体查看[vggnet理解](./object_classification/vgg/ReadMe.md)。
 
+### DenseNet
+
+增加DenseNet知识整理，具体查看[densenet理解](./object_classification/densenet/ReadMe.md)。
 
 ### R-FCN
 
@@ -89,3 +93,4 @@ caffe model zoo中提供了ImageNet预训练模型文件[Netowork in Network ILS
 - [Caffe神经网络结构汇总](http://noahsnail.com/2017/06/01/2017-6-1-Caffe%E7%BD%91%E7%BB%9C%E7%BB%93%E6%9E%84%E6%80%BB%E7%BB%93/) 介绍了caffe中常用的分类网络的模型结构。
 - [自己项目的总结包括面试](https://www.cnblogs.com/ymjyqsx/p/7661088.html) 其中包括了一些目标检测的总结。
 - [Convolutions Types](https://ikhlestov.github.io/pages/machine-learning/convolutions-types/)，其中设计到非常多不同类型的卷积，可以作为细分探索。
+- [donkey's blog](https://littletomatodonkey.github.io/)，该博客对与网络模型的分类非常细致，同时其中的博客对论文的解释非常简洁，可以作为参考。

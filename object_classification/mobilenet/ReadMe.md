@@ -8,6 +8,7 @@
 ## MobileNet v1
 
 ### 参考资料
+- [mobilenet.py](https://github.com/guanfuchen/cifarclassify/blob/master/cifarclassify/modelloader/imagenet/mobilenet.py)，pytorch实现的mobilenet v1参考代码。
 
 ---
 ## MobileNet v2
