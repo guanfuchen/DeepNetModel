@@ -21,6 +21,7 @@
     - R-FCN
 - misc
     - group_convolution
+    - normalization
 
 ---
 ### ResNet
@@ -83,6 +84,14 @@ caffe model zoo中提供了ImageNet预训练模型文件[Netowork in Network ILS
 ### RetinaNet
 
 参考论文Focal Loss for Dense Object Detection
+
+### normalization
+
+- Layer normalization
+- Instance Normalization: The Missing Ingredient for Fast Stylization
+- Weight Normalization: A Simple Reparameterization to Accelerate Training of Deep Neural Networks
+- Batch Renormalization: Towards Reducing Minibatch Dependence in Batch-Normalized Models
+- MegDet: A Large Mini-Batch Object Detector
 
 ---
 ## 参考资料
