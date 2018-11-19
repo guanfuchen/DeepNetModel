@@ -23,6 +23,8 @@
     - group_convolution
     - normalization
 
+![](chenguanfuqq.gitee.io/tuquan2/img_2018_5/object_classification_survey_total.png)
+
 ---
 ### ResNet
 
@@ -103,3 +105,4 @@ caffe model zoo中提供了ImageNet预训练模型文件[Netowork in Network ILS
 - [自己项目的总结包括面试](https://www.cnblogs.com/ymjyqsx/p/7661088.html) 其中包括了一些目标检测的总结。
 - [Convolutions Types](https://ikhlestov.github.io/pages/machine-learning/convolutions-types/)，其中设计到非常多不同类型的卷积，可以作为细分探索。
 - [donkey's blog](https://littletomatodonkey.github.io/)，该博客对与网络模型的分类非常细致，同时其中的博客对论文的解释非常简洁，可以作为参考。
+- [cnn-benchmarks](https://github.com/jcjohnson/cnn-benchmarks)，在不同GPU配置下不同网络的性能比较，其中包括AlexNet，ResNet，VGGNet。
