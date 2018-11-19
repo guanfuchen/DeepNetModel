@@ -23,7 +23,7 @@
     - group_convolution
     - normalization
 
-![](chenguanfuqq.gitee.io/tuquan2/img_2018_5/object_classification_survey_total.png)
+![](http://chenguanfuqq.gitee.io/tuquan2/img_2018_5/object_classification_survey_total.png)
 
 ---
 ### ResNet
