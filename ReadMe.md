@@ -106,3 +106,5 @@ caffe model zoo中提供了ImageNet预训练模型文件[Netowork in Network ILS
 - [Convolutions Types](https://ikhlestov.github.io/pages/machine-learning/convolutions-types/)，其中设计到非常多不同类型的卷积，可以作为细分探索。
 - [donkey's blog](https://littletomatodonkey.github.io/)，该博客对与网络模型的分类非常细致，同时其中的博客对论文的解释非常简洁，可以作为参考。
 - [cnn-benchmarks](https://github.com/jcjohnson/cnn-benchmarks)，在不同GPU配置下不同网络的性能比较，其中包括AlexNet，ResNet，VGGNet。
+- [pretrained-models.pytorch](https://github.com/Cadene/pretrained-models.pytorch)，其中包含了常用DL模型预训练权重。
+- [conv-benchmark](https://github.com/yu4u/conv-benchmark)，比较了Keras和PyTorch上常用几种卷积的性能，包括conv1x1、conv3x1、conv1x3、conv3x3sep、conv3x3、conv5x5和conv3x3dilated，可以参考并今后设计用来形成自己对卷积计算在各种不同平台上的直觉。
