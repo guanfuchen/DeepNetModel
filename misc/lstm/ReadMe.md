@@ -4,4 +4,4 @@
 
 ---
 ## 参考资料
-- [lstm_gru.ipynb](https://github.com/emadRad/lstm-gru-pytorch/blob/master/lstm_gru.ipynb)
+- [lstm_gru.ipynb](https://github.com/emadRad/lstm-gru-pytorch/blob/master/lstm_gru.ipynb)，代码中有lstm和gru单元的简单实现便于理解，另外参考[ConvLSTM_Experiments](https://github.com/BachelorDog/ConvLSTM_Experiments.git)中有convlstm和convgru实现。
