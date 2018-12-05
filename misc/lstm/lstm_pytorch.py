@@ -104,22 +104,24 @@ class MCLSTMCell(nn.Module):
     """
     Multiple Convolution LSTMCell like encoder
     """
-    def __init__(self, input_shape, input_channels, filter_size, num_features, num_layers, return_sequences=False):
+    def __init__(self, input_shape, input_channels, i2s_filter_size, s2s_filter_size_list, num_features_list, num_layers, return_sequences=False):
         super(MCLSTMCell, self).__init__()
         self.input_shape = input_shape
         self.input_channels = input_channels
-        self.filter_size = filter_size
-        self.num_features = num_features
+        self.i2s_filter_size = i2s_filter_size # [5]
+        self.s2s_filter_size_list = s2s_filter_size_list # [5 5]
+        self.num_features_list = num_features_list # [64 64]
         self.num_layers = num_layers
         self.return_sequences = return_sequences
+        self.s2o_filter_size = 3
 
         cell_list = []
-        cell_list.append(CLSTMCell(self.input_shape, self.input_channels, self.filter_size, self.num_features))
+        cell_list.append(CLSTMCell(self.input_shape, self.input_channels, self.s2s_filter_size_list[0], self.num_features_list[0]))
 
-        self.return_sequences_conv = Conv2d(in_channels=self.num_features, out_channels=input_channels, kernel_size=self.filter_size, padding=(self.filter_size - 1)/2)
+        self.return_sequences_conv = Conv2d(in_channels=self.num_features_list[-1], out_channels=input_channels, kernel_size=self.s2o_filter_size, padding=(self.s2o_filter_size - 1)/2)
 
         for idcell in xrange(1, self.num_layers):
-            cell_list.append(CLSTMCell(self.input_shape, self.num_features, self.filter_size, self.num_features))
+            cell_list.append(CLSTMCell(self.input_shape, self.num_features_list[idcell-1], self.s2s_filter_size_list[idcell], self.num_features_list[idcell]))
 
         self.cell_list = nn.ModuleList(cell_list)
 
@@ -136,12 +138,14 @@ class MCLSTMCell(nn.Module):
                 current_layer = self.cell_list[idlayer]
                 current_input_t = current_input[t, :, :, :, :]
                 hidden_h, hidden_c = current_layer(current_input_t, (hidden_h, hidden_c))
-                if self.return_sequences:
+                # 最后一层输出
+                if self.return_sequences and idlayer==self.num_layers-1:
                     outputs_seq.append(self.return_sequences_conv(hidden_h))
                 outputs.append(hidden_h)
 
             next_hidden.append((hidden_h, hidden_c))
-            current_input = torch.cat(outputs, 0).view(seqlen, *outputs[0].size()) # input shape: TxBx(num_features)xHxW
+            # current_input = torch.cat(outputs, 0).view(seqlen, *outputs[0].size()) # input shape: TxBx(num_features)xHxW
+            current_input = torch.cat(outputs, 0).view(seqlen, *outputs[idlayer].size()) # input shape: TxBx(num_features)xHxW
 
         if self.return_sequences:
             # output sequences channel == input sequences channle
@@ -357,10 +361,16 @@ if __name__ == '__main__':
     batch_size = 1
     input_shape = (64, 64) # H, W
     input_channels = 1
-    filter_size = 3
-    num_features = 16
-    num_layers = 2
-    model = MCLSTMCell(input_shape, input_channels, filter_size, num_features, num_layers, return_sequences=True)
+    i2s_filter_size = 5
+    # s2s_filter_size_list = [5, 5]
+    # num_features_list = [64, 64]
+    s2s_filter_size_list = [5, 5, 5]
+    num_features_list = [128, 64, 64]
+    num_layers = 3
+    assert len(s2s_filter_size_list)==num_layers
+    assert len(num_features_list)==num_layers
+
+    model = MCLSTMCell(input_shape, input_channels, i2s_filter_size, s2s_filter_size_list, num_features_list, num_layers, return_sequences=True)
     if use_cuda:
         model.cuda()
 
@@ -417,7 +427,7 @@ if __name__ == '__main__':
             loss_np = loss.cpu().data.numpy() * 1.0 / batch_size
             print "loss:", loss_np
             loss_epoch += loss_np
-            loss_iteration_save_fp.write(str(loss_np))
+            loss_iteration_save_fp.write(str(loss_np)+'\n')
 
             if use_visdom:
                 win = 'loss_iteration'
@@ -512,7 +522,7 @@ if __name__ == '__main__':
     #         loss_np = loss.cpu().data.numpy() * 1.0 / batch_size
     #         # print "loss:", loss_np
     #         loss_epoch += loss_np
-    #         loss_iteration_save_fp.write(str(loss_np))
+    #         loss_iteration_save_fp.write(str(loss_np)+'\n')
     #
     #         if use_visdom:
     #             win = 'loss_iteration'
