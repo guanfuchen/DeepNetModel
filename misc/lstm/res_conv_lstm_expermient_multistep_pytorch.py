@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+import argparse
+
 import numpy as np
 import time
 import torch
@@ -7,11 +9,17 @@ import os
 
 from torch import optim
 
-from lstm_pytorch import MLSTMCell, MovingMNISTLoader, crossentropyloss, MCLSTMCell, ResCLSTMPredNet, ResCLSTM
+from lstm_pytorch import MLSTMCell, MovingMNISTLoader, crossentropyloss, MCLSTMCell, MResCLSTMCell
 
 if __name__ == '__main__':
-    use_cuda = True
-    use_visdom = True
+    parser = argparse.ArgumentParser(description='training parameter setting')
+    parser.add_argument('--use_cuda', type=bool, default=False, help='use cuda [ False ]')
+    parser.add_argument('--use_visdom', type=bool, default=True, help='use visdom [ False ]')
+    parser.add_argument('--save_epoch', type=int, default=-1, help='save model after epoch [ 1 ]')
+    args = parser.parse_args()
+
+    use_cuda = args.use_cuda
+    use_visdom = args.use_visdom
 
 
     # --------------2层CLSTMCell实验相关----------------
@@ -21,13 +29,13 @@ if __name__ == '__main__':
     i2s_filter_size = 5
     # s2s_filter_size_list = [5, 5]
     # num_features_list = [64, 64]
-    s2s_filter_size_list = [5, 5, 5]
-    num_features_list = [128, 64, 64]
-    num_layers = 3
+    s2s_filter_size_list = [3, 3]
+    num_features_list = [16, 16]
+    num_layers = len(s2s_filter_size_list)
     assert len(s2s_filter_size_list)==num_layers
     assert len(num_features_list)==num_layers
 
-    model = ResCLSTMPredNet(input_shape, input_channels)
+    model = MResCLSTMCell(input_shape, input_channels, i2s_filter_size, s2s_filter_size_list, num_features_list, num_layers)
     # model = ResCLSTM(input_shape, input_channels, 1)
     if use_cuda:
         model.cuda()
@@ -68,7 +76,7 @@ if __name__ == '__main__':
             # print('hidden_h.shape:', hidden_h.shape)
             # print('hidden_c.shape:', hidden_c.shape)
             last_hidden = outputs
-            # print('last_hidden.shape:', last_hidden.shape)
+            print('last_hidden.shape:', last_hidden.shape)
 
             optimizer.zero_grad()
 
