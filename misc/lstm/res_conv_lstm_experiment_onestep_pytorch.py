@@ -23,9 +23,12 @@ class OneStepMResCLSTMCell(nn.Module):
         self.input_channels = input_channels
         self.s2o_filter_size = 1
 
-        self.mclstm_1_num_layers = 2
-        self.mclstm_1_num_features_list = [128, 64]
-        self.mclstm_1_s2s_filter_size_list = [5, 5]
+        # self.mclstm_1_num_layers = 3
+        # self.mclstm_1_num_features_list = [128, 64]
+        # self.mclstm_1_s2s_filter_size_list = [5, 5]
+        self.mclstm_1_num_layers = 4
+        self.mclstm_1_num_features_list = [64, 64, 64, 64]
+        self.mclstm_1_s2s_filter_size_list = [3, 3, 3, 3]
         self.mclstm_1 = MResCLSTMCell(self.input_shape, self.input_channels, i2s_filter_size=5, s2s_filter_size_list=self.mclstm_1_s2s_filter_size_list, num_features_list=self.mclstm_1_num_features_list, num_layers=self.mclstm_1_num_layers, return_sequences=False, dilation=1)
         # append all hidden_states in previous layers
         self.return_sequences_conv = Conv2d(in_channels=sum(self.mclstm_1_num_features_list), out_channels=input_channels, kernel_size=self.s2o_filter_size, padding=(self.s2o_filter_size - 1)/2)

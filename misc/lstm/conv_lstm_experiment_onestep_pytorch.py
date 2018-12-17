@@ -12,7 +12,7 @@ from torch.nn import Conv2d
 from torch.autograd import Variable
 import torch.nn.functional as F
 
-from lstm_pytorch import MLSTMCell, MovingMNISTLoader, crossentropyloss, MCLSTMCell, CLSTMCell
+from lstm_pytorch import MLSTMCell, MovingMNISTLoader, crossentropyloss, MCLSTMCell, CLSTMCell, weights_init
 
 
 class OneStepMCLSTMCell(nn.Module):
@@ -29,6 +29,7 @@ class OneStepMCLSTMCell(nn.Module):
         self.mclstm_1_num_features_list = [128, 64, 64]
         self.mclstm_1_s2s_filter_size_list = [5, 5, 5]
         self.mclstm_1 = MCLSTMCell(self.input_shape, self.input_channels, i2s_filter_size=5, s2s_filter_size_list=self.mclstm_1_s2s_filter_size_list, num_features_list=self.mclstm_1_num_features_list, num_layers=self.mclstm_1_num_layers, return_sequences=False, dilation=1)
+        self.mclstm_1.apply(weights_init) # mclstm_1_num_layers+1(return_conv)个Conv
         # append all hidden_states in previous layers
         self.return_sequences_conv = Conv2d(in_channels=sum(self.mclstm_1_num_features_list), out_channels=input_channels, kernel_size=self.s2o_filter_size, padding=(self.s2o_filter_size - 1)/2)
 
@@ -308,7 +309,7 @@ if __name__ == '__main__':
             # print('hidden_h.shape:', hidden_h.shape)
             # print('hidden_c.shape:', hidden_c.shape)
             last_hidden = outputs
-            print('last_hidden.shape:', last_hidden.shape)
+            # print('last_hidden.shape:', last_hidden.shape)
 
             optimizer.zero_grad()
 

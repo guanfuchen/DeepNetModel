@@ -11,7 +11,7 @@ def read_file_avg(loss_fname):
         # print('loss_fp_item:', loss_fp_item)
         loss = float(loss_fp_item.strip())
         loss_list.append(loss)
-        if loss_fp_item_id==2000:
+        if loss_fp_item_id==4000:
             break
     loss_np = np.array(loss_list)
     # print('loss_list:', loss_list)
@@ -22,6 +22,8 @@ def read_file_avg(loss_fname):
     for loss_np_id, loss_np_item in enumerate(loss_np):
         # print('loss_np_id:', loss_np_id)
         # print('loss_np_item:', loss_np_item)
+        # if loss_fname.find('resconv')!=-1:
+        #     loss_np_item -= 100
         loss_acc += loss_np_item
         if (loss_np_id+1)%batch_size==0:
             loss_avg = loss_acc*1.0/batch_size
@@ -40,6 +42,8 @@ def save_list_to_file(loss_avg_list, fname):
 if __name__ == '__main__':
     loss_fnames = []
     loss_fname = os.path.expanduser('~/GitHub/Quick/master_thesis/杂/预测实验/conv_lstm_loss_iteration_onestep_12_6_1.txt')
+    loss_fnames.append(loss_fname)
+    # loss_fname = os.path.expanduser('~/GitHub/Quick/master_thesis/杂/预测实验/conv_lstm_初始化_loss_iteration_onestep_12_6_1.txt')
     loss_fnames.append(loss_fname)
     # loss_fname = os.path.expanduser('~/GitHub/Quick/master_thesis/杂/预测实验/fc_lstm_loss_iteration_onestep_12_6_1.txt')
     # loss_fnames.append(loss_fname)

@@ -426,6 +426,18 @@ def torch_var_bcthw2tbchw(x):
     # BxCxTxHxW ---- TxBxCxHxW
     return x.transpose(0, 2).transpose(1, 2).contiguous()
 
+def weights_init(m):
+    classname = m.__class__.__name__
+    if classname.find('Conv') != -1:
+        print('----Conv----')
+        m.weight.data.normal_(0.0, 0.02)
+        if m.bias is not None:
+            m.bias.data.normal_()
+    elif classname.find('BatchNorm') != -1:
+        print('----BatchNorm----')
+        m.weight.data.normal_(1.0, 0.02)
+        m.bias.data.fill_(0)
+
 # class ResCLSTMPredNet(nn.Module):
 #     """
 #     Multiple Convolution LSTMCell Prediction Net
